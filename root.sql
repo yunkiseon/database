@@ -87,8 +87,93 @@ create table TABLE2(
 );
 
 insert into TABLE2(COL2, COL3) VALUES('TEST','2025-10-29');
+insert into TABLE2(COL1,COL2, COL3) VALUES(3,'TEST','2025-10-30');
 
 select * from TABLE2;
+
+-- 현재 AUTO_INCREMENT 로 생성된 마지막 값 확인
+select LAST_INSERT_ID();
+
+-- auto_increment 시작값 변경
+alter table table2 auto_increment = 100;
+
+-- auto_increment 증가값 변경 ->환경변수를 바꾼 것이라 모든 문서에 영향을 미친다
+-- set @@AUTO_INCREMENT_INCREMENT = 1;
+
+
+-- 테이블 복사 = ORACLE INSERT 서브쿼리
+create table EXAM_INSERT_SELECT_FROM(
+	COL1 INT,
+	COL2 VARCHAR(10)
+);
+
+create table EXAM_INSERT_SELECT_TO(
+	COL1 INT,
+	COL2 VARCHAR(10)
+);
+
+insert into EXAM_INSERT_SELECT_FROM(COL1,COL2) values(1, 'Do');
+insert into EXAM_INSERT_SELECT_FROM(COL1,COL2) values(2, 'It');
+insert into EXAM_INSERT_SELECT_FROM(COL1,COL2) values(3, 'MySQL');
+
+-- EXAM_INSERT_SELECT_FROM -> EXAM_INSERT_SELECT_TO
+
+insert into EXAM_INSERT_SELECT_TO select * from EXAM_INSERT_SELECT_FROM;
+select * from EXAM_INSERT_SELECT_TO;
+
+-- 만들면서 테이블 복사
+create table EXAM_SELECT_NEW as select * FROM EXAM_INSERT_SELECT_FROM;
+select * from exam.exam_select_new esn;
+
+-- 테이블 생성 
+-- 데이터 유형
+-- 숫자형 : TINYINT(1BYTE), SAMLLINT(2BYTE)M MEDIUNUBT(3 BYTE), INT(4BYTE), BIGINT(8BYTE)
+-- 실수형 : 1. 고정 소수점 방식 2. 부동 소수점 방식
+-- 1. 고정소수점 방식 : DECIMAL, NUMERIC
+-- 2. 부정소수점 방식 : FLOAT, DOUBLE
+-- 문자형 : CHAR(n) - 고정길이문자열
+-- 		: VARCHAR(n) 
+-- 날짜형 : TIME/ DAE/ DATETIME / TIMESTAMP
+
+create table EXAM_DATE_TABLE(
+	COL1 DATE,
+	COL2 TIME,
+	COL3 DATETIME,
+	COL4 TIMESTAMP
+);
+
+insert into EXAM.exam_date_table values(NOW(), NOW(), NOW(), NOW());
+select * from exam.exam_date_table edt;
+
+
+-- 사용자생성
+
+-- localhost : 내컴퓨터(로컬접속만 가능)
+-- '%' : 모든 ip에서 접속가능(외부 접속 허용)
+-- 아이디 대소문자 구별함
+
+create user 'TEST1'@'localhost' IDENTIFIED by '12345';
+
+-- create user 'TEST1'@'%' INDENTIFIED by 12345;
+
+-- 권한부여
+-- grant 권한목록 on 데이터베이스.테이블 to '사용자이름'@'호스트'
+-- grant select,insert,update on exam.table1 to 'TEST1'@'localhost';
+-- 이렇게는 열거하기 너무 많고 번거롭기 때문에 oracle과 같이 
+
+grant all privileges on exam.* to 'TEST1'@'localhost';
+-- 변경사항 반영
+flush privileges;
+
+-- 사용자 삭제
+drop user 'TEST1'@'localhost';
+
+-- 비밀번호 변경
+-- alter user 'test1'@'localhost' IDENTIFIED by '변경할 비밀번호'
+
+
+
+
 
 
 
