@@ -46,24 +46,32 @@ GRANT CONNECT, RESOURCE TO TEST2;
 --이렇게 하면 너무 번거롭기 때문에 아예 생성시 부여할 수 있다. 
 --사용자 생성
 
-CREATE USER TEST3 IDENTIFIED BY 12345
+CREATE USER javadb IDENTIFIED BY 12345
 DEFAULT TABLESPACE USERS
 TEMPORARY TABLESPACE TEMP
-QUOTA 2M ON USERS;
+QUOTA 10M ON USERS;
 
 --권한 부여
-GRANT CONNECT, RESOURCE TO TEST3;
+GRANT CONNECT, RESOURCE TO javadb;
 --까지가 사용자 생성 시 하나의 세트라고 기억해두자.
 
 --사용자 삭제
 --'TEST2'(을)를 삭제하려면 CASCADE를 지정하여야 합니다
-DROP USER test2 CASCADE;
-DROP USER test3 CASCADE;
+--DROP USER test2 CASCADE;
+--DROP USER test3 CASCADE;
 
 
 --권한 취소
 --REVOKE 취소할권한이름 FROM 사용자명
-REVOKE CREATE SESSION FROM test2;
+--REVOKE CREATE SESSION FROM test2;
 
 -- 비밀번호변경 
 --alter user test3 identified by 변경할비밀번호
+
+
+
+
+
+
+
+

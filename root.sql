@@ -152,7 +152,7 @@ select * from exam.exam_date_table edt;
 -- '%' : 모든 ip에서 접속가능(외부 접속 허용)
 -- 아이디 대소문자 구별함
 
-create user 'TEST1'@'localhost' IDENTIFIED by '12345';
+create user 'javadb'@'localhost' IDENTIFIED by '12345';
 
 -- create user 'TEST1'@'%' INDENTIFIED by 12345;
 
@@ -161,9 +161,10 @@ create user 'TEST1'@'localhost' IDENTIFIED by '12345';
 -- grant select,insert,update on exam.table1 to 'TEST1'@'localhost';
 -- 이렇게는 열거하기 너무 많고 번거롭기 때문에 oracle과 같이 
 
-grant all privileges on exam.* to 'TEST1'@'localhost';
+grant all privileges on exam.* to 'javadb'@'localhost';
 -- 변경사항 반영
 flush privileges;
+--여기까지가 한 세트
 
 -- 사용자 삭제
 drop user 'TEST1'@'localhost';
