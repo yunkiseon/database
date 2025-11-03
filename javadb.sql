@@ -62,6 +62,10 @@ SELECT * FROM enroll;
 CREATE SEQUENCE enroll_sequence;
 INSERT INTO enroll VALUES(enroll_sequence.nextval, '20250001', 'S001','2025-06-30');
 
+SELECT * FROM DEPARTMENT d WHERE d.DEPT_NAME = '경영학과';
+SELECT * FROM DEPARTMENT d WHERE d.DEPT_NAME like '%경영%';
+INSERT INTO DEPARTMENT VALUES('A003', '데이터과학과');
+
 
 
 
