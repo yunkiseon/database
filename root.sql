@@ -162,6 +162,7 @@ create user 'javadb'@'localhost' IDENTIFIED by '12345';
 -- 이렇게는 열거하기 너무 많고 번거롭기 때문에 oracle과 같이 
 
 grant all privileges on exam.* to 'javadb'@'localhost';
+grant all privileges on springdb.* to 'javadb'@'localhost';
 -- 변경사항 반영
 flush privileges;
 --여기까지가 한 세트
@@ -172,8 +173,9 @@ drop user 'TEST1'@'localhost';
 -- 비밀번호 변경
 -- alter user 'test1'@'localhost' IDENTIFIED by '변경할 비밀번호'
 
-
-
+use springdb;
+insert into stutbl(name) values('홍길동');
+select * from stutbl;
 
 
 
